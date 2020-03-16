@@ -1,0 +1,46 @@
+Arguments: 
+  C:\Users\t.watanabe\scoop\apps\nodejs\current\node.exe C:\Users\t.watanabe\scoop\apps\yarn\current\Yarn\bin\yarn.js install
+
+PATH: 
+  C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\PuTTY\;C:\Program Files\TortoiseGit\bin;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\MySQL\MySQL Utilities 1.6\;C:\Program Files\PowerShell\6\;C:\Program Files\TortoiseSVN\bin;C:\Users\t.watanabe\scoop\apps\yarn\current\Yarn\bin;C:\Users\t.watanabe\scoop\apps\yarn\current\global\node_modules\.bin;C:\Users\t.watanabe\scoop\apps\nodejs\current\bin;C:\Users\t.watanabe\scoop\apps\nodejs\current;C:\Users\t.watanabe\.windows-build-tools\python27\;C:\Users\t.watanabe\scoop\apps\composer\current\home\vendor\bin;C:\Users\t.watanabe\scoop\shims;C:\Users\t.watanabe\AppData\Local\Microsoft\WindowsApps;C:\Users\t.watanabe\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\t.watanabe\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Notepad++;C:\Users\t.watanabe\AppData\Local\hyper\app-3.0.2\resources\bin;C:\Program Files\MySQL\MySQL Server 8.0\bin
+
+Yarn version: 
+  1.19.1
+
+Node version: 
+  12.10.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: getaddrinfo ENOTFOUND registry.yarnpkg.com
+      at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:60:26)
+
+npm manifest: 
+  {
+     "name": "gaina",
+     "version": "0.0.1",
+     "description": "Awesome project developed with TypeORM.",
+     "devDependencies": {
+        "@types/node": "^12.12.6",
+        "ts-node": "8.4.1",
+        "typescript": "3.7.2"
+     },
+     "dependencies": {
+        "dotenv": "^8.2.0",
+        "mysql": "^2.17.1",
+        "reflect-metadata": "^0.1.13",
+        "ts-node-dev": "^1.0.0-pre.44",
+        "typeorm": "0.2.20"
+     },
+     "scripts": {
+        "start": "ts-node src/index.ts"
+     }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
