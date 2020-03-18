@@ -15,7 +15,7 @@ Steps to run this project:
 `import * as DataLoader from 'dataloader';`で読み込めなくなった
 
 エラー内容
-````
+```
 Type originates at this import. A namespace-style import cannot be called or constructed, and will cause a failure at runtime. Consider using a default import or import require here instead.
 ```
 
