@@ -1,9 +1,9 @@
 {
    "type": "mysql",
    "host": "localhost",
-   "port": 3306,
+   "port": 53824,
    "username": "root",
-   "password": "root",
+   "password": "Ifc@130122",
    "database": "test",
    "synchronize": true,
    "logging": false,

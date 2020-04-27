@@ -1,7 +1,8 @@
 import "reflect-metadata";
-import {createConnection, getRepository, getConnection} from "typeorm";
+import { createConnection, getRepository, getConnection } from "typeorm";
 import DataLoader = require('dataloader');
-import {User} from "./entity/User";
+import { User } from "./entity/User";
+import { connectionHelper } from "./connection-helper";
 
 const userLoader = new DataLoader((keys: number[]) => myBatchGetUsers(keys));
 
@@ -18,8 +19,8 @@ Promise.all(promises).then((users) => {
   console.log(users);
 }).then(() => getConnection().close());
 
-async function myBatchGetUsers(keys: number[]) : Promise<Array<User>>{
-  const connection = await createConnection();
+async function myBatchGetUsers(keys: number[]): Promise<User[]> {
+  const connection = await connectionHelper();
   const userRepository = getRepository(User);
   const data = await userRepository.findByIds(keys);
 

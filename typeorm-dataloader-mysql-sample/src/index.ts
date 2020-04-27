@@ -1,10 +1,9 @@
 import "reflect-metadata";
-import {createConnection} from "typeorm";
-import {User} from "./entity/User";
+import { User } from "./entity/User";
 import { Photo } from "./entity/Photo";
+import { connectionHelper } from "./connection-helper";
 
-// テストデータを投入するだけ
-createConnection().then(async connection => {
+connectionHelper().then(async connection => { //データ投入するだけ
     const user = new User();
     const photo = new Photo();
 

@@ -3,15 +3,16 @@
    "version": "0.0.1",
    "description": "Awesome project developed with TypeORM.",
    "devDependencies": {
-      "ts-node": "3.3.0",
-      "@types/node": "^8.0.29",
-      "typescript": "3.3.3333"
+      "@types/node": "^13.13.4",
+      "ts-node": "8.9.1",
+      "typescript": "3.8.3"
    },
    "dependencies": {
-      "dataloader": "^1.4.0",
-      "mysql": "^2.14.1",
-      "reflect-metadata": "^0.1.10",
-      "typeorm": "0.2.19"
+      "dataloader": "^2.0.0",
+      "mysql": "^2.18.1",
+      "reflect-metadata": "^0.1.13",
+      "sqlite3": "^4.1.1",
+      "typeorm": "0.2.24"
    },
    "scripts": {
       "start": "ts-node src/index.ts"
