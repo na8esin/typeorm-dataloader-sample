@@ -4,9 +4,9 @@ import { createQueryRunner, getConfig } from "./helpers";
 import { ProductEntity } from "./entity/product.entity";
 
 // ランナーを上書きしても、レポジトリが持ってるランナーが切り替わるか？
-// 結果、無理ということが判明
+// 結果、無理ということが判明。ConnectionManagerを毎回newしても無理
 async function main() {
-  const connectionManager = new ConnectionManager();
+  let connectionManager = new ConnectionManager();
   // まずmasterにつなぐ
   let qr = await createQueryRunner(
     connectionManager,
@@ -16,13 +16,15 @@ async function main() {
   // リポジトリ作成
   const repo = qr.manager.getRepository(ProductEntity);
 
-  // スキーマを切り替える
+  // スキーマを切り替える。
+  // ここでnewすると最初のマネージャの接続が残っちゃう。メモリ上に幽霊として残るんだろうな。。。
+  connectionManager = new ConnectionManager();
   qr = await createQueryRunner(
     connectionManager,
     getDbConfig('test')
   );
 
-  console.log(repo.queryRunner);
+  //console.log(repo.queryRunner);
 
   // データ登録
   const entity = await repo.save({
