@@ -9,6 +9,7 @@ import {
 } from "typeorm";
 import { ClientEntity } from "./entity/client.entity";
 import { ProductEntity } from "./entity/product.entity";
+import { createQueryRunner } from "./helpers";
 
 require("dotenv").config();
 
@@ -16,7 +17,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(errorHandler);
 
-app.get("/clients", async function(req: Request, res: Response) {
+// コントローラ
+app.get("/clients", async function (req: Request, res: Response) {
   const clientKey = req.query.db;
   const sessionId = { sessionId: req.query.sessionId };
 
@@ -32,8 +34,8 @@ app.get("/clients", async function(req: Request, res: Response) {
   // defaulQueryRunnerもreleaseで使うからグローバルにしておかないと
   // 実際nest上では↓はインジェクションできるようにしないといけない
   const defaulQueryRunner = await createQueryRunner(
-    client.dbConfName,
-    connectionManager
+    connectionManager,
+    getDbConfig(client.dbConfName)
   );
 
   // productを取得する
@@ -53,7 +55,6 @@ app.get("/clients", async function(req: Request, res: Response) {
     connectionManager.has("default") &&
     // forで回して全クローズでもいいけど
     //    connectionManager.connections[0].isConnected
-
     connectionManager.get("default").isConnected
   ) {
     await connectionManager.connections[0]
@@ -65,7 +66,7 @@ app.get("/clients", async function(req: Request, res: Response) {
 });
 
 // start express server
-app.listen(3000, async function() {
+app.listen(3000, async function () {
   // まずは全クライアントを取得するためにmasterにつなぐ
   // ここはべた書きでもいいくらい
   // 後masterはコネクションプールでOK
@@ -77,18 +78,6 @@ app.listen(3000, async function() {
   await createConnection(getDbConfig("master"));
   console.log("Example app listening on port 3000!");
 });
-
-async function createQueryRunner(
-  dbConfName: string,
-  connectionManager: ConnectionManager
-) {
-  const defaulConnection = await connectionManager
-    .create(getDbConfig(dbConfName))
-    .connect();
-  const defaulQueryRunner = defaulConnection.createQueryRunner();
-  await defaulQueryRunner.connect();
-  return defaulQueryRunner;
-}
 
 async function getclient(clientKey): Promise<ClientEntity> {
   const clientRepository = getRepository(ClientEntity);

@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 // register routes
 
-app.get("/clients", async function(req: Request, res: Response) {
+app.get("/clients", async function (req: Request, res: Response) {
   const databaseName = req.query.db;
   const sessionId = { sessionId: req.query.sessionId };
 
@@ -33,8 +33,8 @@ app.get("/clients", async function(req: Request, res: Response) {
     type: "mysql",
     host: "localhost",
     port: 3308,
-    username: "gaina",
-    password: "Ifc@130122",
+    username: "",
+    password: "",
     entities: ["src/entity/**/*.ts"],
     synchronize: false,
     logging: true,
