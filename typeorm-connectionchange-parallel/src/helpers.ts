@@ -17,3 +17,22 @@ export async function createQueryRunner(
 export function getConfig(environment: 'test' | 'dev') {
     return dotenv.parse(fs.readFileSync(`env/${environment}.env`));
 }
+
+export function getDbConfig(
+    env: 'test' | 'dev',
+    databaseName: string): ConnectionOptions {
+    const config = getConfig(env);
+    const dbConfig: ConnectionOptions = {
+        type: "mysql",
+        host: config['DATABASE_HOST'],
+        port: parseInt(config['DATABASE_PORT']),
+        username: config['DATABASE_USER'],
+        password: config['DATABASE_PASSWORD'],
+        entities: ["src/entity/**/*.ts"],
+        synchronize: false,
+        logging: true,
+        database: databaseName,
+        name: databaseName,
+    };
+    return dbConfig;
+}
